@@ -35,5 +35,9 @@ public class Enemy {
     stroke(0);
     ellipse(xcor+tileSize/2,ycor+tileSize/2,tileSize/2,tileSize/2);
   }
+  
+  void die(){
+    enemyList.remove(this);
+  }
  
 }

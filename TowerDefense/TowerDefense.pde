@@ -24,6 +24,9 @@ ArrayList<Tower> towerList = new ArrayList<Tower>();
 //ArrayList of enemies
 ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 
+//ArrayList of bullets
+ArrayList<Bullet> bulletList = new ArrayList<Bullet>();
+
 void setup(){
   size(width, height);
   //initialize grid
@@ -91,11 +94,19 @@ void draw() {
   //draw towers
   for (int k = 0; k<towerList.size(); k++) {
     towerList.get(k).drawTower();
+    if (Math.random() < .01) {
+      towerList.get(k).shoot();
+    }
   }
   
   //draw enemies
   for (int i = 0; i<enemyList.size(); i++) {
     enemyList.get(i).move();
+  }
+  
+  //draw bullets
+  for (int n = 0; n<bulletList.size(); n++) {
+    bulletList.get(n).move();
   }
 }
 
@@ -108,7 +119,7 @@ void keyPressed(){
 //leak enemies when they get to the end of the path
 void leak(Enemy e) {
  enemyList.remove(e);
- println("Enemy leaked!"); 
+ //println("Enemy leaked!"); 
 }
 
 
