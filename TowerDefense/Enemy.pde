@@ -4,6 +4,7 @@ public class Enemy {
   int onLane = 0;
   String dir;
   int speed = 1;
+  int hp = 1;
   
   public Enemy() {
     //create enemy at start of path
@@ -12,6 +13,15 @@ public class Enemy {
     ycor = p.getY();
     dir = path.getDir(0);
   }
+  
+  void setHP(int k) {
+    hp = k;
+  }
+  
+  int getHP() {
+    return hp;
+  }
+  
   
   void move() {
     //set pathStatus to know what to do next
@@ -38,6 +48,18 @@ public class Enemy {
   
   void die(){
     enemyList.remove(this);
+  }
+  
+  int numHits() {
+    int retInt = 0;
+    for (int i = 0; i < bulletList.size(); i++) {
+      if (dist(this.xcor,this.ycor,bulletList.get(i).getX(),bulletList.get(i).getY()) < 5) {
+        retInt ++;
+        bulletList.remove(bulletList.get(i));
+        i++;
+      }
+    }
+    return retInt;
   }
  
 }

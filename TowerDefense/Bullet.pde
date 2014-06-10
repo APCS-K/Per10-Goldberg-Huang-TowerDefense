@@ -14,6 +14,16 @@ public class Bullet {
     else {dir = "right";}
   }
   
+  //accesor
+  public int getX() {
+    return xcor;
+  }
+  
+  //accessor
+  public int getY() {
+    return ycor;
+  }
+  
   void move() {
     if (dir.equals("up")) {
       if (ycor <= 0) {bulletList.remove(this);}

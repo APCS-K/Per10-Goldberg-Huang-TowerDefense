@@ -27,6 +27,9 @@ ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 //ArrayList of bullets
 ArrayList<Bullet> bulletList = new ArrayList<Bullet>();
 
+//hash table of number of hits done to enemies
+HashMap<Enemy,Integer> enemyHits = new HashMap<Enemy,Integer>();
+
 void setup(){
   size(width, height);
   //initialize grid
@@ -108,6 +111,18 @@ void draw() {
   for (int n = 0; n<bulletList.size(); n++) {
     bulletList.get(n).move();
   }
+  updateHits();
+  
+  for (Enemy E : enemyList) {
+    E.setHP(E.getHP() - (int)(enemyHits.get(E)*1.5));
+  }
+  
+  for (int i = 0; i < enemyList.size(); i++) {
+    if (enemyList.get(i).getHP() <= 0) {
+      enemyList.get(i).die();
+      i --;
+    }
+  }
 }
 
 //press a to add enemies
@@ -121,6 +136,14 @@ void leak(Enemy e) {
  enemyList.remove(e);
  //println("Enemy leaked!"); 
 }
+  
+  void updateHits() {
+    enemyHits.clear();
+    for (Enemy E : enemyList) {
+      enemyHits.put(E, new Integer(E.numHits()));
+    }
+  }
+
 
 
         
