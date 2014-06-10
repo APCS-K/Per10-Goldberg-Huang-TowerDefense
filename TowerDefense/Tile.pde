@@ -34,8 +34,9 @@ public class Tile {
   //returns true if open space to build
   //only one tower per tile
   //no towers on path
+  //must be enough money to build
   boolean canBuild() {
-    return (localTower == null && !isPath); 
+    return (localTower == null && !isPath && money > 10); 
 } 
 
   //adds new tower to towerList

@@ -1,12 +1,13 @@
 public class Enemy {
-  int xcor;
-  int ycor;
+  private int xcor;
+  private int ycor;
   int onLane = 0;
   String dir;
   int speed = 1;
-  int hp = 1;
-  int price = (int)random(3) + wave;
+  private int hp = 1;
+  int price = (int)random(10);
   
+  //default constructor
   public Enemy() {
     //create enemy at start of path
     PathPart p = path.getStart();
@@ -15,6 +16,7 @@ public class Enemy {
     dir = path.getDir(0);
   }
   
+  //constructor
   public Enemy(int HP) {
     PathPart p = path.getStart();
     xcor = p.getX();
@@ -27,14 +29,17 @@ public class Enemy {
     hp = k;
   }
   
-  int getHP() {
+  //accessor
+  public int getHP() {
     return hp;
   }
   
-  int getPrice(){
+  //accessor
+  public int getPrice(){
     return price;
   }
   
+  //move enemy
   void move(Node<Enemy> E) {
     Enemy e = E.data;
     //set pathStatus to know what to do next
@@ -49,7 +54,7 @@ public class Enemy {
       e.onLane ++;
       e.dir = path.getDir(e.onLane);
     }
-    //move/draw enemy
+    //move and draw enemy
     if (e.dir.equals("up")) {e.ycor -= e.speed;}
     else if (e.dir.equals("down")) {e.ycor += e.speed;}
     else if (e.dir.equals("left")) {e.xcor -= e.speed;}

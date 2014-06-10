@@ -25,6 +25,7 @@ public class Tower {
     rect(xcor*tileSize,ycor*tileSize,tileSize,tileSize);
   }
   
+  //shoot bullet
   void shoot() {
     bulletList.add(new Bullet(this));
   }

@@ -6,6 +6,7 @@ public class Path {
   public Path() {
   }
   
+ //constructor
  public Path (PathPart[] p) {
   path = p;
   //array to keep track of directions of each piece of the path

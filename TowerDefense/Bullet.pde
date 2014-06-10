@@ -24,6 +24,7 @@ public class Bullet {
     return ycor;
   }
   
+  //move bullet
   void move() {
     if (dir.equals("up")) {
       if (ycor <= 0) {bulletList.remove(this);}

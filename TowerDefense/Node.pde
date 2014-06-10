@@ -3,6 +3,7 @@ public class Node<T> {
     protected Node<T> parent;
     protected ArrayList<Node<T>> childList;
     
+    //constructor
     public Node(T t, Node<T> p) {
       data = t;
       parent = p;
