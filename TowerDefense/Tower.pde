@@ -1,8 +1,6 @@
 public class Tower {
  int xcor;
  int ycor;
- //towerType to be implemented later
- int towerType;
 
   //constructor
   public Tower(int x, int y) {

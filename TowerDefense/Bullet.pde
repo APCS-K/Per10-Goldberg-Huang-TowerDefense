@@ -14,7 +14,7 @@ public class Bullet {
     else {dir = "right";}
   }
   
-  //accesor
+  //accessor
   public int getX() {
     return xcor;
   }

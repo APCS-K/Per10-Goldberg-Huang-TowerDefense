@@ -14,6 +14,14 @@ public class Enemy {
     dir = path.getDir(0);
   }
   
+  public Enemy(int HP) {
+    PathPart p = path.getStart();
+    xcor = p.getX();
+    ycor = p.getY();
+    dir = path.getDir(0);
+    hp = HP;
+  }
+  
   void setHP(int k) {
     hp = k;
   }
@@ -23,32 +31,33 @@ public class Enemy {
   }
   
   
-  void move() {
+  void move(Node<Enemy> E) {
+    Enemy e = E.data;
     //set pathStatus to know what to do next
-    String pathStatus = path.checkPos(new PathPart(xcor,ycor),onLane);
+    String pathStatus = path.checkPos(new PathPart(e.xcor,e.ycor),e.onLane);
     //leak enemy if it makes it to the end of the path
     if (pathStatus.equals("done")) {
-      leak(this);
+      leak(E);
       return;
     }
     //change direction if enemy needs to turn
     else if (pathStatus.equals("next")) {
-      onLane ++;
-      dir = path.getDir(onLane);
+      e.onLane ++;
+      e.dir = path.getDir(e.onLane);
     }
     //move/draw enemy
-    if (dir.equals("up")) {ycor -= speed;}
-    else if (dir.equals("down")) {ycor += speed;}
-    else if (dir.equals("left")) {xcor -= speed;}
-    else {xcor += speed;} //if (dir.equals("right"))
+    if (e.dir.equals("up")) {e.ycor -= e.speed;}
+    else if (e.dir.equals("down")) {e.ycor += e.speed;}
+    else if (e.dir.equals("left")) {e.xcor -= e.speed;}
+    else {e.xcor += e.speed;} //if (dir.equals("right"))
     fill(255,0,0);
     stroke(0);
-    ellipse(xcor+tileSize/2,ycor+tileSize/2,tileSize/2,tileSize/2);
+    ellipse(e.xcor+tileSize/2,e.ycor+tileSize/2,tileSize/2,tileSize/2);
+    fill(0);
+    textSize(12);
+    text("" + e.hp, e.xcor, e.ycor);
   }
-  
-  void die(){
-    enemyList.remove(this);
-  }
+
   
   int numHits() {
     int retInt = 0;
