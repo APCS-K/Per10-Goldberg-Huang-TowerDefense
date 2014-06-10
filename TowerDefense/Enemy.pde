@@ -56,7 +56,7 @@ public class Enemy {
       if (dist(this.xcor,this.ycor,bulletList.get(i).getX(),bulletList.get(i).getY()) < 5) {
         retInt ++;
         bulletList.remove(bulletList.get(i));
-        i++;
+        i--;
       }
     }
     return retInt;
