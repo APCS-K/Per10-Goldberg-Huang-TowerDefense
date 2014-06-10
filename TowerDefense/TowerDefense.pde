@@ -7,6 +7,8 @@ static int height = tileSize * 25;
 static int gameWidth = tileSize * 26;
 static int menuXcor = gameWidth + 1;
 static int menuWidth = width - menuXcor;
+int wave = 1;
+int money = 100;
 int lives = 10;
 
 //2D array grid stores tiles
@@ -71,6 +73,7 @@ void mousePressed() {
  if (currentTile != null && currentTile.canBuild()) {
    //println("new PathPart (" + currentTile.getX() + "," + currentTile.getY() + "),");
    currentTile.buildTower(new Tower(currentTile.getX(),currentTile.getY()));
+   money = money - 10;
  } 
 }
 
@@ -130,12 +133,15 @@ void draw() {
   for (int i = 0; i < enemyList.size(); i++) {
     if (enemyList.get(i).data.getHP() <= 0) {
       enemyList.remove(i);
-      i--;
+      money = money + enemyList.get(i).data.getPrice();
+      i = i - 1;
     }
   }
   
   fill(0);
   textSize(16);
+  text("Wave: " + wave, menuXcor + tileSize, height - 6*tileSize);
+  text("Money: " + money, menuXcor + tileSize, height - 4*tileSize);
   text("Lives: " + lives, menuXcor + tileSize, height - 2*tileSize);
 }
 

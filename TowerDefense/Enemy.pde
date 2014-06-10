@@ -5,6 +5,7 @@ public class Enemy {
   String dir;
   int speed = 1;
   int hp = 1;
+  int price = (int)random(3) + wave;
   
   public Enemy() {
     //create enemy at start of path
@@ -30,6 +31,9 @@ public class Enemy {
     return hp;
   }
   
+  int getPrice(){
+    return price;
+  }
   
   void move(Node<Enemy> E) {
     Enemy e = E.data;
